@@ -5,7 +5,9 @@
 - Sorting
 - Searching
 - Linked Lists
-- Graphs and Trees
+- Graphs
+- Trees
+- Dynamic Programming
 
 ## Our approach
 Problems were proposed at beginning of each lecture, we implemented
