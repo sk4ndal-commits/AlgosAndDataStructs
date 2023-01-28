@@ -13,7 +13,6 @@ public class DoublyLinkedList {
     linkedList.print();
     linkedList.remove(4);
     linkedList.print();
-
   }
 
   private static class Node {
