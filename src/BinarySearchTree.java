@@ -14,9 +14,9 @@ public class BinarySearchTree {
   }
 
 
-  private static class Node {
-    int val;
-    Node left, right;
+  public static class Node {
+    public int val;
+    public Node left, right;
 
     Node(int val) {
       this.val = val;
@@ -25,14 +25,14 @@ public class BinarySearchTree {
     }
   }
 
-  private static class BST {
-    Node root;
+  public static class BST {
+    public Node root;
 
     BST() {
       this.root = null;
     }
 
-    private void insert(int val) {
+    public void insert(int val) {
       Node newNode = new Node(val);
 
       Node currentNode = this.root, parentCurrentNode = null;
@@ -50,7 +50,7 @@ public class BinarySearchTree {
       else parentCurrentNode.right = newNode;
     }
 
-    private void search(int val) {
+    public void search(int val) {
       Node currentNode = this.root;
 
       while (currentNode != null && currentNode.val != val) {
