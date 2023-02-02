@@ -35,7 +35,9 @@ public class HashTable {
             ArrayList<String> keys = new ArrayList<>();
 
             for (int i = 0; i < this.size; i++) if (this.keyMap[i] != null) {
-                this.keyMap[i].forEach(pair -> keys.add(pair.key));
+                this.keyMap[i].forEach(pair -> {
+                    if (!keys.contains(pair.key)) keys.add(pair.key);
+                });
             }
 
             return keys;
