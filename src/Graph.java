@@ -59,8 +59,9 @@ public class Graph {
         public void removeVertex(String vertex) {
             if (!this.adjacencyList.containsKey(vertex)) return;
 
-            for (Entry<String, List<String>> mp : this.adjacencyList.entrySet()) {
-                mp.getValue().remove(vertex);
+            while (this.adjacencyList.get(vertex).size()  > 0) {
+                String key = this.adjacencyList.get(vertex).get(0);
+                this.removeEdge(key, vertex);
             }
 
             this.adjacencyList.get(vertex).clear();
