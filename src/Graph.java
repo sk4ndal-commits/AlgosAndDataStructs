@@ -1,38 +1,24 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 public class Graph {
 
     public static void main(String[] args) {
 
-        UndirectedGraph<String> g = new UndirectedGraph<>();
+        UndirectedGraph<Integer> g = new UndirectedGraph<>();
 
-        g.addVertex("sascha");
-        g.addVertex("kann");
-        g.addVertex("noch");
-        g.addVertex("nicht");
-        g.addVertex("kochen");
+        g.addEdge(0, 1);
+        g.addEdge(0, 2);
+        g.addEdge(1, 2);
+        g.addEdge(2, 0);
+        g.addEdge(2, 3);
+        g.addEdge(3, 3);
 
-        g.addEdge("sascha", "kochen");
-        g.addEdge("sascha", "nicht");
+        g.DFS(2);
 
+        System.out.println();
 
-        g.printGraph();
-
-        g.removeEdge("sascha", "nicht");
-
-        System.out.println("################################");
-
-        g.printGraph();
-
-        System.out.println("################################");
-
-        g.removeVertex("kochen");
-
-        g.printGraph();
+        g.BFS(2);
     }
 
 
@@ -73,6 +59,50 @@ public class Graph {
 
             this.adjacencyList.get(from).remove(to);
             this.adjacencyList.get(to).remove(from);
+        }
+
+        public void BFS(T startVertex) {
+            Set<T> visited = new HashSet<>();
+
+            BFSUtil(startVertex, visited);
+        }
+
+        private void BFSUtil(T vertex, Set<T> visited) {
+            Queue<T> vertices = new LinkedList<>();
+            vertices.add(vertex);
+            visited.add(vertex);
+            T currentVertex;
+
+            while (!vertices.isEmpty()) {
+                currentVertex = vertices.remove();
+
+                System.out.print(currentVertex.toString() + ' ');
+
+                for (T neighbour : this.adjacencyList.get(currentVertex)) {
+                    if (!visited.contains(neighbour)) {
+
+                        vertices.add(neighbour);
+                        visited.add(neighbour);
+                    }
+                }
+            }
+        }
+
+        public void DFS(T startVertex) {
+            Set<T> visited = new HashSet<>();
+
+            DFSUtil(startVertex, visited);
+        }
+
+        private void DFSUtil(T vertex, Set<T> visited) {
+
+
+            visited.add(vertex);
+            System.out.print(vertex.toString() + ' ');
+
+            for (T neighbour : this.adjacencyList.get(vertex)) {
+                if (!visited.contains(neighbour)) DFSUtil(neighbour, visited);
+            }
         }
 
         public void printGraph() {
