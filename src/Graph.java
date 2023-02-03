@@ -8,7 +8,7 @@ public class Graph {
 
     public static void main(String[] args) {
 
-        UndirectedGraph g = new UndirectedGraph();
+        UndirectedGraph<String> g = new UndirectedGraph<>();
 
         g.addVertex("sascha");
         g.addVertex("kann");
@@ -36,19 +36,19 @@ public class Graph {
     }
 
 
-    private static class UndirectedGraph {
-        private final Map<String, List<String>> adjacencyList;
+    private static class UndirectedGraph<T> {
+        private final Map<T, List<T>> adjacencyList;
 
         UndirectedGraph() {
             adjacencyList = new HashMap<>();
         }
 
 
-        public void addVertex(String vertex) {
+        public void addVertex(T vertex) {
             if (!adjacencyList.containsKey(vertex)) adjacencyList.put(vertex, new ArrayList<>());
         }
 
-        public void addEdge(String from, String to) {
+        public void addEdge(T from, T to) {
             this.addVertex(from);
             this.addVertex(to);
 
@@ -56,11 +56,11 @@ public class Graph {
             this.adjacencyList.get(to).add(from);
         }
 
-        public void removeVertex(String vertex) {
+        public void removeVertex(T vertex) {
             if (!this.adjacencyList.containsKey(vertex)) return;
 
             while (this.adjacencyList.get(vertex).size()  > 0) {
-                String key = this.adjacencyList.get(vertex).get(0);
+                T key = this.adjacencyList.get(vertex).get(0);
                 this.removeEdge(key, vertex);
             }
 
@@ -68,7 +68,7 @@ public class Graph {
             this.adjacencyList.remove(vertex);
         }
 
-        public void removeEdge(String from, String to) {
+        public void removeEdge(T from, T to) {
             if (!(this.adjacencyList.containsKey(from) && this.adjacencyList.containsKey(to))) return;
 
             this.adjacencyList.get(from).remove(to);
@@ -76,7 +76,7 @@ public class Graph {
         }
 
         public void printGraph() {
-            for (Entry<String, List<String>> mp : adjacencyList.entrySet()) {
+            for (Entry<T, List<T>> mp : adjacencyList.entrySet()) {
                 System.out.println("-----------------------");
                 System.out.println("Vertex: " + mp.getKey());
                 System.out.println("Values: " );
