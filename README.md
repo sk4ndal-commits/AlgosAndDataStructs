@@ -5,6 +5,8 @@
 - Sorting
 - Searching
 - Linked Lists
+- Stacks and Queues
+- Hashtables
 - Graphs
 - Trees
 - Dynamic Programming
